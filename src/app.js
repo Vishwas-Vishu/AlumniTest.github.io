@@ -32,7 +32,7 @@ const requireLogin = (req, res, next) => {
 
 //database connection
 // const db = process.env.MONGO_URL || "mongodb+srv://DBIT_Alumni:DBITALUMNI@dbitalumni.yrw3w.mongodb.net/TELEGRAM?retryWrites=true&w=majority"
-const db = "mongodb+srv://Vishwas_123:4qdWIvgyQ7kJiy3O@cluster0.jkqpt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const db = process.env.MONGO_URL || "mongodb+srv://Vishwas_123:4qdWIvgyQ7kJiy3O@cluster0.jkqpt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDb connected"))
