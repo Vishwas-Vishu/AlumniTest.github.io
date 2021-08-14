@@ -1,0 +1,52 @@
+.link{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    text-align: center;
+    align-items: center;
+}
+
+.link h2{
+    font-size: 35px;
+    font-family: "Poppins", sans-serif;
+}
+
+.link a{
+    font-size: 30px;
+    font-family: "Poppins", sans-serif;
+}
+.big-circle {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: -1;
+    opacity: 0.5;
+    height: 80%;
+  }
+  
+  .mid-circle {
+    position: absolute;
+    top: 30%;
+    right: 30%;
+    z-index: -1;
+    height: 60%;
+    opacity: 0.5;
+  }
+
+  @media(max-width:415px) 
+  {
+    .link{
+        margin-top: -40px;
+        text-align: center;
+        align-items: center;
+  }
+
+  .link h2{
+      font-size: 25px;
+  }
+  .link a{
+      font-size: 20px;
+  }
+
+}

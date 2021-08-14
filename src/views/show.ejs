@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DBIT ALUMNI | ADMIN</title>
+    <link rel="icon" href="/img/DBITAA logo.png" type="image/x-icon" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/styles/show.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/751afc7438.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-light navbar-expand-sm bg-light">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#Navbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#"
+          ><img
+            src="/img/DBITAA logo.png"
+            alt=""
+            class="rounded-circle border"
+            height="50"
+            width="50"
+          />
+          DBIT ALUMNI
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="Navbar">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                ><button class="btn btn-outline-dark">
+                  <i class="fa fa-home"></i> Home
+                </button></a
+              >
+            </li>
+            <!-- <li class="nav-item"><a class="nav-link" href="/"> <i class="fa fa-lock"></i> Logout</a></li>      -->
+            <li class="nav-item">
+              <form action="/logout" method="POST">
+                <a class="nav-link"
+                  ><button class="btn btn-outline-dark">
+                    <i class="fa fa-lock"></i> Logout
+                  </button></a
+                >
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <img class="big-circle" src="/img/big-eclipse.svg" alt="" />
+    <img class="mid-circle" src="/img/mid-eclipse.svg" alt="" />
+
+    <div class="container-fluid">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-6 col-sm-auto">
+            <form action="/show" method="GET" class="form-group mt-3">
+              <div class="form-group">
+                <div class="input-group row">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text">Search</label>
+                  </div>
+                  <input
+                    type="text"
+                    name="search"
+                    placeholder="By Name or Graduation Year"
+                    class="form-control"
+                  />
+                  <button
+                    type="submit"
+                    class="btn btn-outline-dark"
+                    value="Search"
+                  >
+                    <i class="fas fa-search"></i> Default
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-lg-6 col-sm-auto">
+            <form action="/show" method="GET" class="form-group mt-3">
+              <div class="input-group row">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="branch">Branch</label>
+                </div>
+                <select id="branch" name="search" class="form-control">
+                  <option value="">Select One</option>
+                  <option value="CSE">CSE</option>
+                  <option value="ISE">ISE</option>
+                  <option value="MECH">MECH</option>
+                  <option value="Electronis & Comunication">
+                    Electronis & Comunication
+                  </option>
+                  <option value="EEE">EEE</option>
+                  <option value="TC">TC</option>
+                  <option value="CIVIL">CIVIL</option>
+                  <option value="MBA">MBA</option>
+                  <option value="M.Tech VLSI & Embedded Systems">
+                    M.Tech VLSI & Embedded Systems
+                  </option>
+                  <option value="M.Tech Digital Electronics">
+                    M.Tech Digital Electronics
+                  </option>
+                  <option value="M.Tech Power Systems Engg">
+                    M.Tech Power Systems Engg
+                  </option>
+                  <option value="M.Tech Design Engg">M.Tech Design Engg</option>
+                  <option value="M.Tech Computer Science & Engg">
+                    M.Tech Computer Science & Engg
+                  </option>
+                </select>
+                <button
+                  type="submit"
+                  class="btn btn-outline-dark"
+                  value="Search"
+                >
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-lg-12">
+            <h2>
+              Total entries in Database: <%= use %>
+              <button
+                onclick="exportTableToCSV('Alumini '+ newdate + '.csv')"
+                class="btn btn-primary float-right"
+              >
+                <i class="fas fa-download"></i> Export CSV
+              </button>
+            </h2>
+          </div>
+
+          <div class="col-lg-12 mt-3">
+            <div class="scrol">
+              <table class="table table-bordered table-hover">
+                <thead class="bg-info text-white">
+                  <tr>
+                    <th>Sl.No</th>
+                    <th>Name</th>
+                    <th>USN</th>
+                    <th>G_Year</th>
+                    <th>Branch</th>
+                    <th>Code</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <% for (let user of users){%>
+                <tr>
+                  <td><%= count++ %></td>
+                  <td><%= user.name %></td>
+                  <td><%= user.usn %></td>
+                  <td><%= user.g_year %></td>
+                  <td><%= user.branch %></td>
+                  <td><%= user.code %></td>
+                  <td><%= user.contact %></td>
+                  <td><%= user.email %></td>
+                  <td><%= user.date %></td>
+                </tr>
+                <% }%>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="/js/export.js"></script>
+    <script>
+      var d = new Date();
+      var date = d.getDate();
+      var year = d.getFullYear();
+      var month = d.getMonth();
+
+      newdate = date + "-" + month + "-" + year;
+    </script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
